@@ -19,13 +19,25 @@ pipeline {
 
         stage('test') {
             steps {
-                sh 'yarn test'
+                script {
+                    try {
+                        sh 'yarn test'
+                    } finally {
+                        junit '**/reports/**/*.xml'
+                    }
+                }
             }
         }
 
         stage('e2e tests') {
             steps {
-                sh 'yarn test:e2e'
+                script {
+                    try {
+                        sh 'yarn test:e2e'
+                    } finally {
+                        junit '**/reports/**/*.xml'
+                    }
+                }
             }
         }
 
