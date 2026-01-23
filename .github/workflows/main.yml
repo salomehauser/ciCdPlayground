@@ -41,12 +41,9 @@ jobs:
       with:
         files: 'reports/**/*.xml'
         check_name: Test Results
-    - name: Extract version
-      id: version
-      run: echo "VERSION=${{ inputs.version }}" >> $GITHUB_OUTPUT
     - name: Create git tag
       run: |
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
-        git tag -a v${{ steps.version.outputs.VERSION }} -m "Release version ${{ steps.version.outputs.VERSION }}"
-        git push origin v${{ steps.version.outputs.VERSION }}
+        git tag -a v${{ inputs.version }} -m "Release version ${{ inputs.version }}"
+        git push origin v${{ inputs.version }}
