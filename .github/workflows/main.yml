@@ -43,7 +43,7 @@ jobs:
         check_name: Test Results
     - name: Extract version
       id: version
-      run: echo "VERSION=${{ inputs.version || fromJson('{\"version\": \"1.0.0\"}').version }}" >> $GITHUB_OUTPUT
+      run: echo "VERSION=${{ inputs.version }}" >> $GITHUB_OUTPUT
     - name: Create git tag
       run: |
         git config user.name "github-actions"
